@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="description"
+    content="Why NixOS Tired of other distributions there. Just want to try something new. Been using it a few years back."
+  />
+  <title>
+    Install encrypted NixOS
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  
+  
+  
+  
+  <link rel="shortcut icon" type="image/png"  href="https://abdullah.solutions//icon.png" />
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link href="https://abdullah.solutions/styles.591589daec716a7d5287f8d56c2c091e.min.css" rel="stylesheet" />
+
+  
+  <link href="https://abdullah.solutions/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css" rel="stylesheet" id="theme-link">
+
+   
+  
+  <script src="https://abdullah.solutions/js/darkmode.f8cf90c0eb2a1b1130e07b828c68ed23.min.js"></script>
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+
+
+
+    
+  <script src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
+  <script src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
+  
+  <script src="https://abdullah.solutions/js/popover.37b1455b8f0603154072b9467132c659.min.js"></script>
+
+  
+  
+  
+  <script src="https://abdullah.solutions/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js"></script>
+  
+
+  
+  
+  <script src="https://abdullah.solutions/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js"></script>
+  
+
+  
+   
+  <script>
+    const BASE_URL = "https://abdullah.solutions/"
+    const fetchData = Promise.all([
+          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.f70a04903cef815925ae7f71aa90b178.min.json")
+            .then(data => data.json())
+            .then(data => ({
+              index: data.index,
+              links: data.links,
+            })),
+          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.1b5639f54e8a4a2ad37f78b765cac150.min.json")
+            .then(data => data.json()),
+        ])
+        .then(([{index, links}, content]) => ({
+          index,
+          links,
+          content,
+        }))
+
+      const render = () => {
+      
+
+      const siteBaseURL = new URL(BASE_URL);
+      const pathBase = siteBaseURL.pathname;
+      const pathWindow = window.location.pathname;
+      const isHome = pathBase == pathWindow;
+
+      addCopyButtons();
+      
+
+      addTitleToCodeBlocks();
+      
+
+      
+      const container = document.getElementById("graph-container")
+      
+      if (!container) return requestAnimationFrame(render)
+      
+      container.textContent = ""
+
+      const drawGlobal = isHome &&  false ;
+      drawGraph(
+          "https://abdullah.solutions",
+          drawGlobal,
+          [{"/moc":"#4388cc"}],
+          drawGlobal ? {"centerForce":1,"depth":-1,"enableDrag":true,"enableLegend":false,"enableZoom":true,"fontSize":0.5,"linkDistance":1,"opacityScale":3,"repelForce":1,"scale":1.4} : {"centerForce":1,"depth":1,"enableDrag":true,"enableLegend":false,"enableZoom":true,"fontSize":0.6,"linkDistance":1,"opacityScale":3,"repelForce":2,"scale":1.2}
+        );
+
+      
+
+
+      
+      initPopover(
+        "https://abdullah.solutions",
+         true ,
+         true 
+      )
+      
+    }
+
+    const init = (doc = document) => {
+      
+      addCopyButtons();
+      
+
+      addTitleToCodeBlocks();
+      renderMathInElement(doc.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+        ],
+        throwOnError : false
+      });
+      
+    };
+  </script>
+  
+  
+  <script type="module">
+    import { attachSPARouting } from "https:\/\/abdullah.solutions\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script>
+  
+</head>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-147400444-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+<body>
+<div id="search-container">
+    <div id="search-space">
+        <input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search" placeholder="Search for something...">
+        <div id="results-container">
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js" integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin="anonymous" defer></script>
+
+<script defer src="https://abdullah.solutions/js/search.cf33b507388f3dfd5513a2afcda7af41.min.js"></script>
+
+<div class="singlePage">
+    
+    <header>
+    <h1 id="page-title"><a href="https://abdullah.solutions/">Abdullah Khabir</a></h1>
+    <div class="spacer"></div>
+    <div id="search-icon">
+      <p>Search</p>
+      <svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
+    </div>
+    <div class='darkmode'>
+    <input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1">
+    <label id="toggle-label-light" for='darkmode-toggle' tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35;" xml:space="preserve">
+            <title>Light Mode</title>
+            <path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z" />
+        </svg>
+    </label>
+    <label id="toggle-label-dark" for='darkmode-toggle' tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'" xml:space="preserve">
+            <title>Dark Mode</title>
+            <path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z" />
+        </svg>
+    </label>
+</div>
+</header>
+
+
+    <article>
+      <h1>Install encrypted NixOS</h1>
+      <p class="meta">
+          Last updated 
+Jul 20, 2022
+
+ 
+          
+
+      </p>
+      <ul class="tags">
+          
+          <li><a href="https://abdullah.solutions/tags/encryption/">Encryption</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/os/">Os</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/linux/">Linux</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/nixos/">Nixos</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/nix/">Nix</a></li>
+          
+      </ul>
+      
+<aside class="mainTOC">
+    <details >
+        <summary>Table of Contents</summary>
+        <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#why-nixos">Why NixOS</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#connect-to-internet">Connect to internet</a></li>
+        <li><a href="#partitioning">Partitioning</a></li>
+        <li><a href="#create-encrypted-container">Create encrypted container</a></li>
+        <li><a href="#formating-drive">Formating Drive</a></li>
+        <li><a href="#mount-the-partitions">Mount the partitions</a></li>
+        <li><a href="#generate-nixos--configuration">Generate NixOS  configuration</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#login">Login</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+    </details>
+</aside>
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+
+
+<img src="https://abdullah.solutions//content/notes/images/nixos-encrypted.jpg" width="auto" alt="encrypted nixos install"  /></p>
+<a href="#why-nixos"><h3 id="why-nixos"><span class="hanchor" ariaLabel="Anchor"># </span>Why NixOS</h3></a>
+<p>Tired of other distributions there.  Just want to try something new. Been using it a few years back. But not that deep.</p>
+<a href="#download"><h3 id="download"><span class="hanchor" ariaLabel="Anchor"># </span>Download</h3></a>
+<p>Head over to 
+
+<a href="https://nixos.org/download" rel="noopener">Downloads page</a> and get the latest iso file. I chose the minimal install iso.</p>
+<p>Insert a USB drive to your machine and write the NixOS image to it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>nixos.iso <span class="nv">of</span><span class="o">=</span>/dev/sdX <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span></code></pre></div><p>Boot your machine and interrupt it by pressing the dedicated key. Boot from USB drive.</p>
+<a href="#connect-to-internet"><h3 id="connect-to-internet"><span class="hanchor" ariaLabel="Anchor"># </span>Connect to internet</h3></a>
+<p>Become root by invoking <code>sudo -i</code> and connect to internet using <code>wpa_supplicant</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wpa_passphrase <span class="s1">&#39;your network name&#39;</span> <span class="s1">&#39;your passphrase&#39;</span> &gt; /etc/wpa_supplicant.conf
+</span></span><span class="line"><span class="cl">systemctl start wpa_supplicant
+</span></span></code></pre></div><p>or you can use <code>wpa_cli</code> to connect.</p>
+<a href="#partitioning"><h3 id="partitioning"><span class="hanchor" ariaLabel="Anchor"># </span>Partitioning</h3></a>
+<p>Suppose your drive is <code>/dev/sda</code></p>
+<p>We are going to create first boot partition unencrypted. And all other space we are going to allocate to <code>LUKS volume</code> so 2 partitions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gdisk /dev/sda
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">GPT fdisk <span class="o">(</span>gdisk<span class="o">)</span> version 1.0.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  Partition table scan:
+</span></span><span class="line"><span class="cl">  MBR: protective
+</span></span><span class="line"><span class="cl">  BSD: not present
+</span></span><span class="line"><span class="cl">  APM: not present
+</span></span><span class="line"><span class="cl">  GPT: present
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Found valid GPT with protective MBR<span class="p">;</span> using GPT.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: o
+</span></span><span class="line"><span class="cl">This option deletes all partitions and creates a new protective MBR.
+</span></span><span class="line"><span class="cl">Proceed? <span class="o">(</span>Y/N<span class="o">)</span>: Y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+</span></span><span class="line"><span class="cl">Partition number <span class="o">(</span>1-128, default 1<span class="o">)</span>: 
+</span></span><span class="line"><span class="cl">First sector <span class="o">(</span>34-242187466, <span class="nv">default</span> <span class="o">=</span> 2048<span class="o">)</span> or <span class="o">{</span>+-<span class="o">}</span>size<span class="o">{</span>KMGTP<span class="o">}</span>: 
+</span></span><span class="line"><span class="cl">Last sector <span class="o">(</span>2048-242187466, <span class="nv">default</span> <span class="o">=</span> 242187466<span class="o">)</span> or <span class="o">{</span>+-<span class="o">}</span>size<span class="o">{</span>KMGTP<span class="o">}</span>:
+</span></span><span class="line"><span class="cl">+512M
+</span></span><span class="line"><span class="cl">Current <span class="nb">type</span> is <span class="s1">&#39;Linux filesystem&#39;</span>
+</span></span><span class="line"><span class="cl">Hex code or GUID <span class="o">(</span>L to show codes, <span class="nv">Enter</span> <span class="o">=</span> 8300<span class="o">)</span>: EF00
+</span></span><span class="line"><span class="cl">Changed <span class="nb">type</span> of partition to <span class="s1">&#39;EFI System&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+</span></span><span class="line"><span class="cl">Partition number <span class="o">(</span>2-128, default 2<span class="o">)</span>: 
+</span></span><span class="line"><span class="cl">First sector <span class="o">(</span>34-242187466, <span class="nv">default</span> <span class="o">=</span> 1050624<span class="o">)</span> or <span class="o">{</span>+-<span class="o">}</span>size<span class="o">{</span>KMGTP<span class="o">}</span>: 
+</span></span><span class="line"><span class="cl">Last sector <span class="o">(</span>1050624-242187466, <span class="nv">default</span> <span class="o">=</span> 242187466<span class="o">)</span> or <span class="o">{</span>+-<span class="o">}</span>size<span class="o">{</span>KMGTP<span class="o">}</span>: 
+</span></span><span class="line"><span class="cl">Current <span class="nb">type</span> is <span class="s1">&#39;Linux filesystem&#39;</span>
+</span></span><span class="line"><span class="cl">Hex code or GUID <span class="o">(</span>L to show codes, <span class="nv">Enter</span> <span class="o">=</span> 8300<span class="o">)</span>: <span class="m">8309</span>
+</span></span><span class="line"><span class="cl">Changed <span class="nb">type</span> of partition to <span class="s1">&#39;Linux LUKS&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+</span></span><span class="line"><span class="cl">Disk /dev/sda: <span class="m">242187500</span> sectors, 115.5 GiB
+</span></span><span class="line"><span class="cl">Logical sector size: <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Disk identifier <span class="o">(</span>GUID<span class="o">)</span>: 569FFB67-6969-49E4-B999-15A681987564
+</span></span><span class="line"><span class="cl">Partition table holds up to <span class="m">128</span> entries
+</span></span><span class="line"><span class="cl">First usable sector is 34, last usable sector is <span class="m">242187466</span>
+</span></span><span class="line"><span class="cl">Partitions will be aligned on 2048-sector boundaries
+</span></span><span class="line"><span class="cl">Total free space is <span class="m">2014</span> sectors <span class="o">(</span>1007.0 KiB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Number  Start <span class="o">(</span>sector<span class="o">)</span>    End <span class="o">(</span>sector<span class="o">)</span>  Size       Code  Name
+</span></span><span class="line"><span class="cl">   <span class="m">1</span>            <span class="m">2048</span>         <span class="m">1050623</span>   512.0 MiB   EF00  EFI System
+</span></span><span class="line"><span class="cl">   <span class="m">2</span>         <span class="m">1050624</span>       <span class="m">242187466</span>   115.0 GiB   <span class="m">8309</span>  Linux LUKS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+</span></span></code></pre></div><p>Type o and then Y.</p>
+<p>Type n to create a new partition. Select 1 to create a very first partition for EFI. Hit enter and then type +512M to create a 512 Mbs partition. Enter ef00 as partition type.</p>
+<p>Again type n to create a new partition. Select 2. Hit enter and again enter to give it rest of the storage if you don’t wanna install some other operating system. Hex code for LUKS is 8309 but you can go without it. By default it will be 8300 (linux filesystem).</p>
+<p>Type p to check if everything is fine. And once satisfied, type w and hit enter to save the work.</p>
+<a href="#create-encrypted-container"><h3 id="create-encrypted-container"><span class="hanchor" ariaLabel="Anchor"># </span>Create encrypted container</h3></a>
+<p>Now create a LUKS container.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cryptsetup luksFormat /dev/sda2
+</span></span></code></pre></div><p>It will ask you to confirm. Type YES in all uppercase. Then choose a good passphrase. Write it if you can’t memorize it. Once forgotten, you can’t recover it.</p>
+<p>Now open the new container.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cryptsetup open /dev/sda2 cryptlvm
+</span></span></code></pre></div><p>Create a physical volume in this LUKS container.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pvcreate /dev/mapper/cryptlvm
+</span></span></code></pre></div><p>Create a volume group. I’ll name it nix.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vgcreate nix /dev/mapper/cryptlvm
+</span></span></code></pre></div><p>Create logical volumes on volume group. I’m creating three, one for encrypted swap and another for home and last one for root.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lvcreate -L 8G nix -n swap
+</span></span><span class="line"><span class="cl">lvcreate -L 25G nix -n root
+</span></span><span class="line"><span class="cl">lvcreate -l +100%FREE nix -n home
+</span></span></code></pre></div><a href="#formating-drive"><h3 id="formating-drive"><span class="hanchor" ariaLabel="Anchor"># </span>Formating Drive</h3></a>
+<p>Next we are going to create filesystems on it.</p>
+<p>First partition will have FAT filesystem and we will add a label <code>nixos-boot</code> to it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkfs.fat -F <span class="m">32</span> -n nix-boot /dev/sda1
+</span></span></code></pre></div><p>Next we will create <code>ext4</code> filesystems for <code>root</code> and <code>home</code>. And add <code>swap</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkfs.ext4 /dev/mapper/nix-root -L nix-root
+</span></span><span class="line"><span class="cl">mkfs.ext4 /dev/mapper/nix-home -L nix-home
+</span></span><span class="line"><span class="cl">mkswap /dev/mapper/nix-swap -L nix-swap
+</span></span></code></pre></div><a href="#mount-the-partitions"><h3 id="mount-the-partitions"><span class="hanchor" ariaLabel="Anchor"># </span>Mount the partitions</h3></a>
+<p>Next we will mount the partitions. Order is important. First of all, we will mount the root, then create directories and mount the other filesystems.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mount /dev/disk/by-label/nix-root /mnt
+</span></span><span class="line"><span class="cl">mkdir -p /mnt/home
+</span></span><span class="line"><span class="cl">mkdir -p /mnt/boot
+</span></span><span class="line"><span class="cl">mount /dev/disk/by-label/nix-home /mnt/home
+</span></span><span class="line"><span class="cl">mount /dev/disk/by-label/nix-boot /mnt/boot
+</span></span><span class="line"><span class="cl">swapon /dev/disk/by-label/nix-swap
+</span></span></code></pre></div><a href="#generate-nixos--configuration"><h3 id="generate-nixos--configuration"><span class="hanchor" ariaLabel="Anchor"># </span>Generate NixOS  configuration</h3></a>
+<p>Next we have to generate NixOS configuration file. All OS is based on this configuration file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nixos-generate-config --root /mnt
+</span></span></code></pre></div><p>Let&rsquo;s edit this file to have system like how we want. If you&rsquo;re installing using minimal iso file, you should have <code>nano</code> only. In that case you can install <code>vim</code> .</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># In case you don&#39;t have vim</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nix-env -f <span class="s1">&#39;&lt;nixpkgs&gt;&#39;</span> -iA vim
+</span></span></code></pre></div><p>And edit the configuration file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vi /mnt/etc/nixos/configuration.nix
+</span></span></code></pre></div><p>Add a user and don&rsquo;t forget to enable <code>systemd-boot</code> else your system won&rsquo;t boot.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># User management</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">users</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        users.ak <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">isNormalUser</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">shell</span> <span class="o">=</span> pkgs.zsh<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">extraGroups</span> <span class="o">=</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;wheel&#34;</span> <span class="s2">&#34;ak&#34;</span> <span class="s2">&#34;docker&#34;</span> <span class="s2">&#34;video&#34;</span> <span class="s2">&#34;audio&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">]</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><p>Replace <code>ak</code> with your desired username. Don&rsquo;t forget to set a password.</p>
+<a href="#install"><h3 id="install"><span class="hanchor" ariaLabel="Anchor"># </span>Install</h3></a>
+<p>Let&rsquo;s install the OS now.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nixos-install
+</span></span></code></pre></div><p>It witll install the OS based on your configuration. At the last step, it will ask you the root password. Just set the root password and reboot.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">setting root password...
+</span></span><span class="line"><span class="cl">New password: ***
+</span></span><span class="line"><span class="cl">Retype new password: ***
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">reboot
+</span></span></code></pre></div><a href="#login"><h3 id="login"><span class="hanchor" ariaLabel="Anchor"># </span>Login</h3></a>
+<p>On the first boot, login with root user, change the password, and if you previously didn&rsquo;t add a user, add now.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">useradd -c <span class="s1">&#39;Abdullah Khabir&#39;</span> -m -U -G wheel,audio,video ak
+</span></span><span class="line"><span class="cl">passwd ak
+</span></span></code></pre></div><p>Replace <code>ak</code> with your desired username, <code>Abdullah Khabir</code> with your real name. <code>-U</code> will create a group with the same name as your user, <code>-m</code> will create a home directory and with <code>-G</code> you will be added to <code>wheel</code> group to use <code>sudo</code> command, <code>video</code> group to set/change brightness.</p>
+<p>That&rsquo;s it for now.</p>
+
+
+    </article>
+    
+
+<hr/>
+
+
+<div class="page-end">
+    <div class="backlinks-container">
+        <h3>Backlinks</h3>
+<ul class="backlinks">
+    
+    
+    
+    
+    
+    
+    
+    <li>
+        No backlinks found
+    </li>
+    
+</ul>
+
+    </div>
+    <div>
+        <script
+  src="https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js"
+  integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI="
+  crossorigin="anonymous"
+></script>
+<h3>Interactive Graph</h3>
+<div id="graph-container"></div>
+<style>
+  :root {
+    --g-node: var(--secondary);
+    --g-node-active: var(--primary);
+    --g-node-inactive: var(--visited);
+    --g-link: var(--outlinegray);
+    --g-link-active: #5a7282;
+  }
+</style>
+
+<script src="https://abdullah.solutions/js/graph.afdb02e537635f9a611b53a988e5645b.js"></script>
+
+    </div>
+</div>
+
+
+
+<div id="contact_buttons">
+    <footer>
+        <p> Abdullah Khabir © 2022</p>
+        <ul>
+            
+            <li><a href="https://abdullah.solutions/">Home</a></li>
+            <li><a href="https://youtube.com/c/AbdullahToday">YouTube</a></li><li><a href="https://github.com/AbdullahKhabir">Github</a></li></ul>
+    </footer>
+</div>
+
+</div>
+</body>
+
+</html>

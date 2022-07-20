@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abdullah Khabir on </title>
+    <link>https://abdullah.solutions/</link>
+    <description>Recent content in Abdullah Khabir on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://abdullah.solutions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install encrypted NixOS</title>
+      <link>https://abdullah.solutions/notes/encrypted-nixos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://abdullah.solutions/notes/encrypted-nixos/</guid>
+      <description>Why NixOS Tired of other distributions there. Just want to try something new. Been using it a few years back.</description>
+    </item>
+    
+  </channel>
+</rss>
