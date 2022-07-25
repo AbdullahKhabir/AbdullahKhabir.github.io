@@ -7,24 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://abdullah.solutions/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>automation</title>
-      <link>https://abdullah.solutions/tags/automation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://abdullah.solutions/tags/automation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dotfiles</title>
-      <link>https://abdullah.solutions/tags/dotfiles/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://abdullah.solutions/tags/dotfiles/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>encryption</title>
       <link>https://abdullah.solutions/tags/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -43,38 +25,11 @@
     </item>
     
     <item>
-      <title>linux</title>
-      <link>https://abdullah.solutions/tags/linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://abdullah.solutions/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nix</title>
-      <link>https://abdullah.solutions/tags/nix/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://abdullah.solutions/tags/nix/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>nixos</title>
       <link>https://abdullah.solutions/tags/nixos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://abdullah.solutions/tags/nixos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>os</title>
-      <link>https://abdullah.solutions/tags/os/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://abdullah.solutions/tags/os/</guid>
       <description></description>
     </item>
     
