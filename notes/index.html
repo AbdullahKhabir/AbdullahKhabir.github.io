@@ -80,13 +80,13 @@
   <script>
     const BASE_URL = "https://abdullah.solutions"
     const fetchData = Promise.all([
-          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.f70a04903cef815925ae7f71aa90b178.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.12fe6e57c4097327721a7145b4d7f070.min.json")
             .then(data => data.json())
             .then(data => ({
               index: data.index,
               links: data.links,
             })),
-          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.4298fc895bd95cb4ca91724172b2679b.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.3f9b5ea27bcbd38860edffe9e92c6c8b.min.json")
             .then(data => data.json()),
         ])
         .then(([{index, links}, content]) => ({
@@ -240,6 +240,34 @@ Jul 20, 2022
                 <li><a href="https://abdullah.solutions/tags/nixos/">Nixos</a></li>
                 
                 <li><a href="https://abdullah.solutions/tags/nix/">Nix</a></li>
+                
+            </ul>
+        </div>
+    </li><li class="section-li">
+        <div class="section">
+            <p class="meta">
+                
+Unknown
+
+
+            </p>
+            <div class="desc">
+                <h3><a href="https://abdullah.solutions/notes/home-manager-install/">Home Manager Installation</a></h3>
+            </div>
+            <div class="spacer"></div>
+            <ul class="tags">
+                
+                <li><a href="https://abdullah.solutions/tags/home-manager/">Home-Manager</a></li>
+                
+                <li><a href="https://abdullah.solutions/tags/dotfiles/">Dotfiles</a></li>
+                
+                <li><a href="https://abdullah.solutions/tags/linux/">Linux</a></li>
+                
+                <li><a href="https://abdullah.solutions/tags/nixos/">Nixos</a></li>
+                
+                <li><a href="https://abdullah.solutions/tags/nix/">Nix</a></li>
+                
+                <li><a href="https://abdullah.solutions/tags/automation/">Automation</a></li>
                 
             </ul>
         </div>

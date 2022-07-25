@@ -5,10 +5,11 @@
   <meta charset="UTF-8" />
   <meta
     name="description"
-    content=""
+    content="What&rsquo;s Home Manager Home-Manager is a nix way to manage dotfiles.
+How to install Home-Manager can be installed on almost any linux distribution."
   />
   <title>
-    linux
+    Home Manager Installation
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -215,67 +216,126 @@ if (!doNotTrack) {
 
 
     <article>
-        <h1>Tag: linux</h1>
-        
-        <ul class="section-ul"><li class="section-li">
-        <div class="section">
-            <p class="meta">
-                
+      <h1>Home Manager Installation</h1>
+      <p class="meta">
+          Last updated 
 Unknown
 
+ 
+          
 
-            </p>
-            <div class="desc">
-                <h3><a href="https://abdullah.solutions/notes/home-manager-install/">Home Manager Installation</a></h3>
-            </div>
-            <div class="spacer"></div>
-            <ul class="tags">
-                
-                <li><a href="https://abdullah.solutions/tags/home-manager/">Home-Manager</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/dotfiles/">Dotfiles</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/linux/">Linux</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/nixos/">Nixos</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/nix/">Nix</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/automation/">Automation</a></li>
-                
-            </ul>
-        </div>
-    </li><li class="section-li">
-        <div class="section">
-            <p class="meta">
-                
-Jul 20, 2022
+      </p>
+      <ul class="tags">
+          
+          <li><a href="https://abdullah.solutions/tags/home-manager/">Home manager</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/dotfiles/">Dotfiles</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/linux/">Linux</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/nixos/">Nixos</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/nix/">Nix</a></li>
+          
+          <li><a href="https://abdullah.solutions/tags/automation/">Automation</a></li>
+          
+      </ul>
+      
+
+      
 
 
-            </p>
-            <div class="desc">
-                <h3><a href="https://abdullah.solutions/notes/encrypted-nixos/">Install encrypted NixOS</a></h3>
-            </div>
-            <div class="spacer"></div>
-            <ul class="tags">
-                
-                <li><a href="https://abdullah.solutions/tags/encryption/">Encryption</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/os/">Os</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/linux/">Linux</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/nixos/">Nixos</a></li>
-                
-                <li><a href="https://abdullah.solutions/tags/nix/">Nix</a></li>
-                
-            </ul>
-        </div>
-    </li></ul>
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="#whats-home-manager"><h2 id="whats-home-manager"><span class="hanchor" ariaLabel="Anchor"># </span>What&rsquo;s Home Manager</h2></a>
+<p>Home-Manager is a nix way to manage dotfiles.</p>
+<a href="#how-to-install"><h3 id="how-to-install"><span class="hanchor" ariaLabel="Anchor"># </span>How to install</h3></a>
+<p>Home-Manager can be installed on almost any linux distribution. But I&rsquo;m covering only NixOS here.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+</span></span></code></pre></div><p>Replace <code>release-22.05</code> with the release you&rsquo;re using.</p>
+<p>And update channels.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-channel --update
+</span></span></code></pre></div><p>Install home-manager.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-shell <span class="s1">&#39;&lt;home-manager&gt;&#39;</span> -A install
+</span></span></code></pre></div><a href="#back-up-old-dots"><h3 id="back-up-old-dots"><span class="hanchor" ariaLabel="Anchor"># </span>Back up old dots</h3></a>
+<p>If you already have some dots, home-manager will warn you. Back them up and re-run the last command.</p>
+<a href="#edit-home-manager-file"><h3 id="edit-home-manager-file"><span class="hanchor" ariaLabel="Anchor"># </span>Edit home-manager file</h3></a>
+<p>home-manager will create a file <code>~/.config/nixpkgs/home.nix</code>. You can edit it by hand to suit your needs. Or by invoking:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">home-manager edit
+</span></span></code></pre></div>
+
     </article>
     
+
+<hr/>
+
+
+<div class="page-end">
+    <div class="backlinks-container">
+        <h3>Backlinks</h3>
+<ul class="backlinks">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+      
+    
+      
+      
+      <li>
+        <a href="/notes/encrypted-nixos/" data-ctx="Manage Dotfiles using Home-Manager" data-src="/notes/encrypted-nixos" class="internal-link">Install encrypted NixOS</a>
+      </li>
+      
+      
+      
+</ul>
+
+    </div>
+    <div>
+        <script
+  src="https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js"
+  integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI="
+  crossorigin="anonymous"
+></script>
+<h3>Interactive Graph</h3>
+<div id="graph-container"></div>
+<style>
+  :root {
+    --g-node: var(--secondary);
+    --g-node-active: var(--primary);
+    --g-node-inactive: var(--visited);
+    --g-link: var(--outlinegray);
+    --g-link-active: #5a7282;
+  }
+</style>
+
+<script src="https://abdullah.solutions/js/graph.afdb02e537635f9a611b53a988e5645b.js"></script>
+
+    </div>
+</div>
+
+
+
 <div id="contact_buttons">
     <footer>
         <p> Abdullah Khabir © 2022</p>

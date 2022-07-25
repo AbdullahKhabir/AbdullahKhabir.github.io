@@ -2,16 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://abdullah.solutions/notes/home-manager-install/</loc>
+  </url><url>
     <loc>https://abdullah.solutions/notes/encrypted-nixos/</loc>
     <lastmod>2022-07-20T07:47:28+05:00</lastmod>
   </url><url>
     <loc>https://abdullah.solutions/</loc>
     <lastmod>2022-07-20T07:47:28+05:00</lastmod>
   </url><url>
+    <loc>https://abdullah.solutions/tags/automation/</loc>
+  </url><url>
     <loc>https://abdullah.solutions/categories/</loc>
+  </url><url>
+    <loc>https://abdullah.solutions/tags/dotfiles/</loc>
   </url><url>
     <loc>https://abdullah.solutions/tags/encryption/</loc>
     <lastmod>2022-07-20T07:47:28+05:00</lastmod>
+  </url><url>
+    <loc>https://abdullah.solutions/tags/home-manager/</loc>
   </url><url>
     <loc>https://abdullah.solutions/tags/linux/</loc>
     <lastmod>2022-07-20T07:47:28+05:00</lastmod>

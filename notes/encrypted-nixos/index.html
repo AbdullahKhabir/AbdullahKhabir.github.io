@@ -80,13 +80,13 @@
   <script>
     const BASE_URL = "https://abdullah.solutions"
     const fetchData = Promise.all([
-          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.f70a04903cef815925ae7f71aa90b178.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.12fe6e57c4097327721a7145b4d7f070.min.json")
             .then(data => data.json())
             .then(data => ({
               index: data.index,
               links: data.links,
             })),
-          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.4298fc895bd95cb4ca91724172b2679b.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.3f9b5ea27bcbd38860edffe9e92c6c8b.min.json")
             .then(data => data.json()),
         ])
         .then(([{index, links}, content]) => ({
@@ -243,9 +243,8 @@ Jul 20, 2022
         <summary>Table of Contents</summary>
         <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#why-nixos">Why NixOS</a>
       <ol>
-        <li><a href="#why-nixos">Why NixOS</a></li>
         <li><a href="#download">Download</a></li>
         <li><a href="#connect-to-internet">Connect to internet</a></li>
         <li><a href="#partitioning">Partitioning</a></li>
@@ -285,7 +284,7 @@ Jul 20, 2022
 
 
 <img src="https://abdullah.solutions/images/nixos-encrypted.jpg" width="auto" alt="encrypted nixos install"  /></p>
-<a href="#why-nixos"><h3 id="why-nixos"><span class="hanchor" ariaLabel="Anchor"># </span>Why NixOS</h3></a>
+<a href="#why-nixos"><h2 id="why-nixos"><span class="hanchor" ariaLabel="Anchor"># </span>Why NixOS</h2></a>
 <p>Tired of other distributions there.  Just want to try something new. Been using it a few years back. But not that deep.</p>
 <a href="#download"><h3 id="download"><span class="hanchor" ariaLabel="Anchor"># </span>Download</h3></a>
 <p>Head over to 
@@ -423,7 +422,18 @@ Jul 20, 2022
 </span></span><span class="line"><span class="cl">useradd -c <span class="s1">&#39;Abdullah Khabir&#39;</span> -m -U -G wheel,audio,video ak
 </span></span><span class="line"><span class="cl">passwd ak
 </span></span></code></pre></div><p>Replace <code>ak</code> with your desired username, <code>Abdullah Khabir</code> with your real name. <code>-U</code> will create a group with the same name as your user, <code>-m</code> will create a home directory and with <code>-G</code> you will be added to <code>wheel</code> group to use <code>sudo</code> command, <code>video</code> group to set/change brightness.</p>
-<p>That&rsquo;s it for now.</p>
+<blockquote>
+<p>✏️ Next: 
+
+
+
+
+
+<a
+  href="/notes/home-manager-install/"
+  rel="noopener" class="internal-link"
+  data-src="/notes/home-manager-install/">Manage Dotfiles using Home-Manager</a></p>
+</blockquote>
 
 
     </article>

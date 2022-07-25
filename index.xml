@@ -7,6 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://abdullah.solutions/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Home Manager Installation</title>
+      <link>https://abdullah.solutions/notes/home-manager-install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://abdullah.solutions/notes/home-manager-install/</guid>
+      <description>What&amp;rsquo;s Home Manager Home-Manager is a nix way to manage dotfiles.
+How to install Home-Manager can be installed on almost any linux distribution.</description>
+    </item>
+    
+    <item>
       <title>Install encrypted NixOS</title>
       <link>https://abdullah.solutions/notes/encrypted-nixos/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

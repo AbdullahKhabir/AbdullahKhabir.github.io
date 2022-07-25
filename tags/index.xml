@@ -7,11 +7,38 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://abdullah.solutions/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>automation</title>
+      <link>https://abdullah.solutions/tags/automation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://abdullah.solutions/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotfiles</title>
+      <link>https://abdullah.solutions/tags/dotfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://abdullah.solutions/tags/dotfiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>encryption</title>
       <link>https://abdullah.solutions/tags/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://abdullah.solutions/tags/encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>home-manager</title>
+      <link>https://abdullah.solutions/tags/home-manager/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://abdullah.solutions/tags/home-manager/</guid>
       <description></description>
     </item>
     

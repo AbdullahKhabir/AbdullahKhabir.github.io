@@ -81,13 +81,13 @@
   <script>
     const BASE_URL = "https://abdullah.solutions"
     const fetchData = Promise.all([
-          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.f70a04903cef815925ae7f71aa90b178.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.12fe6e57c4097327721a7145b4d7f070.min.json")
             .then(data => data.json())
             .then(data => ({
               index: data.index,
               links: data.links,
             })),
-          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.4298fc895bd95cb4ca91724172b2679b.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.3f9b5ea27bcbd38860edffe9e92c6c8b.min.json")
             .then(data => data.json()),
         ])
         .then(([{index, links}, content]) => ({
