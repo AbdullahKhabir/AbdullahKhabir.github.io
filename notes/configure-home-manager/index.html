@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="description"
+    content="How to configure home manager? Home-Manager creates its file home.nix in ~/.config/nixpkgs/.
+Edit it to fit your needs.
+Here is mine."
+  />
+  <title>
+    Configure Home-Manager
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  
+  
+  
+  
+  <link rel="shortcut icon" type="image/png"  href="https://abdullah.solutions/icon.png" />
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link href="https://abdullah.solutions/styles.591589daec716a7d5287f8d56c2c091e.min.css" rel="stylesheet" />
+
+  
+  <link href="https://abdullah.solutions/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css" rel="stylesheet" id="theme-link">
+
+   
+  
+  <script src="https://abdullah.solutions/js/darkmode.f8cf90c0eb2a1b1130e07b828c68ed23.min.js"></script>
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+
+
+
+    
+  <script src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
+  <script src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
+  
+  <script src="https://abdullah.solutions/js/popover.37b1455b8f0603154072b9467132c659.min.js"></script>
+
+  
+  
+  
+  <script src="https://abdullah.solutions/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js"></script>
+  
+
+  
+  
+  <script src="https://abdullah.solutions/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js"></script>
+  
+
+  
+   
+  <script>
+    const BASE_URL = "https://abdullah.solutions"
+    const fetchData = Promise.all([
+          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.adcaccf61c18639df49eb5d887c94953.min.json")
+            .then(data => data.json())
+            .then(data => ({
+              index: data.index,
+              links: data.links,
+            })),
+          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.5d3bb638472353489d09e34d695d87c1.min.json")
+            .then(data => data.json()),
+        ])
+        .then(([{index, links}, content]) => ({
+          index,
+          links,
+          content,
+        }))
+
+      const render = () => {
+      
+
+      const siteBaseURL = new URL(BASE_URL);
+      const pathBase = siteBaseURL.pathname;
+      const pathWindow = window.location.pathname;
+      const isHome = pathBase == pathWindow;
+
+      addCopyButtons();
+      
+
+      addTitleToCodeBlocks();
+      
+
+      
+      const container = document.getElementById("graph-container")
+      
+      if (!container) return requestAnimationFrame(render)
+      
+      container.textContent = ""
+
+      const drawGlobal = isHome &&  false ;
+      drawGraph(
+          "https://abdullah.solutions",
+          drawGlobal,
+          [{"/moc":"#4388cc"}],
+          drawGlobal ? {"centerForce":1,"depth":-1,"enableDrag":true,"enableLegend":false,"enableZoom":true,"fontSize":0.5,"linkDistance":1,"opacityScale":3,"repelForce":1,"scale":1.4} : {"centerForce":1,"depth":1,"enableDrag":true,"enableLegend":false,"enableZoom":true,"fontSize":0.6,"linkDistance":1,"opacityScale":3,"repelForce":2,"scale":1.2}
+        );
+
+      
+
+
+      
+      initPopover(
+        "https://abdullah.solutions",
+         true ,
+         true 
+      )
+      
+    }
+
+    const init = (doc = document) => {
+      
+      addCopyButtons();
+      
+
+      addTitleToCodeBlocks();
+      renderMathInElement(doc.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+        ],
+        throwOnError : false
+      });
+      
+    };
+  </script>
+  
+  
+  <script type="module">
+    import { attachSPARouting } from "https:\/\/abdullah.solutions\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script>
+  
+</head>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-147400444-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+<body>
+<div id="search-container">
+    <div id="search-space">
+        <input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search" placeholder="Search for something...">
+        <div id="results-container">
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js" integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin="anonymous" defer></script>
+
+<script defer src="https://abdullah.solutions/js/search.cf33b507388f3dfd5513a2afcda7af41.min.js"></script>
+
+<div class="singlePage">
+    
+    <header>
+    <h1 id="page-title"><a href="https://abdullah.solutions">Abdullah Khabir</a></h1>
+    <div class="spacer"></div>
+    <div id="search-icon">
+      <p>Search</p>
+      <svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
+    </div>
+    <div class='darkmode'>
+    <input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1">
+    <label id="toggle-label-light" for='darkmode-toggle' tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35;" xml:space="preserve">
+            <title>Light Mode</title>
+            <path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z" />
+        </svg>
+    </label>
+    <label id="toggle-label-dark" for='darkmode-toggle' tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'" xml:space="preserve">
+            <title>Dark Mode</title>
+            <path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z" />
+        </svg>
+    </label>
+</div>
+</header>
+
+
+    <article>
+      <h1>Configure Home-Manager</h1>
+      <p class="meta">
+          Last updated 
+Jul 26, 2022
+
+ 
+          
+
+      </p>
+      <ul class="tags">
+          
+          <li><a href="https://abdullah.solutions/tags/home-manager/">Home manager</a></li>
+          
+      </ul>
+      
+<aside class="mainTOC">
+    <details >
+        <summary>Table of Contents</summary>
+        <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#how-to-configure-home-manager">How to configure home manager?</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+    </details>
+</aside>
+
+
+      
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+    
+  
+    
+  
+  
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+        
+      
+    
+  
+
+  
+  
+  
+    
+  
+    
+  
+    
+  
+  
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+        
+      
+    
+  
+
+  
+  
+  
+    
+  
+    
+  
+    
+  
+  
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+        
+      
+    
+  
+
+
+
+
+
+<a href="#how-to-configure-home-manager"><h3 id="how-to-configure-home-manager"><span class="hanchor" ariaLabel="Anchor"># </span>How to configure home manager?</h3></a>
+<p>Home-Manager creates its file <code>home.nix</code> in <code>~/.config/nixpkgs/</code>.</p>
+<p>Edit it to fit your needs.</p>
+<p>Here is mine.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">{</span> config, pkgs, ... <span class="o">}</span>:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Home Manager needs a bit of information about you and the</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># paths it should manage.</span>
+</span></span><span class="line"><span class="cl">  home.username <span class="o">=</span> <span class="s2">&#34;ak&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  home.homeDirectory <span class="o">=</span> <span class="s2">&#34;/home/ak&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  systemd.user.startServices <span class="o">=</span> <span class="s2">&#34;sd-switch&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># This value determines the Home Manager release that your</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># configuration is compatible with. This helps avoid breakage</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># when a new Home Manager release introduces backwards</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># incompatible changes.</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># You can update Home Manager without changing this value. See</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># the Home Manager release notes for a list of state version</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># changes in each release.</span>
+</span></span><span class="line"><span class="cl">  home.stateVersion <span class="o">=</span> <span class="s2">&#34;22.05&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Let Home Manager install and manage itself.</span>
+</span></span><span class="line"><span class="cl">  programs.home-manager.enable <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Let Home Manager manage GUI services</span>
+</span></span><span class="line"><span class="cl">  xsession.enable <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  xsession.windowManager.command <span class="o">=</span> <span class="s2">&#34;bspwm&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Install some packages  </span>
+</span></span><span class="line"><span class="cl">  home.packages <span class="o">=</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">  pkgs.htop
+</span></span><span class="line"><span class="cl">  pkgs.zsh
+</span></span><span class="line"><span class="cl">  pkgs.eksctl
+</span></span><span class="line"><span class="cl">  pkgs.kubectl
+</span></span><span class="line"><span class="cl">  pkgs.usb-modeswitch
+</span></span><span class="line"><span class="cl">  pkgs.recoll
+</span></span><span class="line"><span class="cl">  pkgs.anki
+</span></span><span class="line"><span class="cl">  pkgs.p7zip
+</span></span><span class="line"><span class="cl">  pkgs.zip
+</span></span><span class="line"><span class="cl">  pkgs.lua
+</span></span><span class="line"><span class="cl">  <span class="o">]</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Some services</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">services</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      gpg-agent <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">enable</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">defaultCacheTtl</span> <span class="o">=</span> 1800<span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">enableSshSupport</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">pinentryFlavor</span> <span class="o">=</span> <span class="s2">&#34;curses&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      screen-locker = {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        enable = true;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        name = &#34;xss-lock&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        lockCmd = &#34;${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 5 #3&#34;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        extraOptions = &#34;-n ~/.local/bin/dim_screen&#34;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        screensaverCycle = 30;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   };</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="c1"># Some programs</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">programs</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">zsh</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">enable</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">enableCompletion</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">dotDir</span> <span class="o">=</span> <span class="s2">&#34;.config/zsh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">enableSyntaxHighlighting</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">autocd</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">enableAutosuggestions</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">shellAliases</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vh</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.config/nixpkgs/home.nix&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdh</span><span class="o">=</span><span class="s2">&#34;cd ~/.config/nixpkgs/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">rbs</span><span class="o">=</span><span class="s2">&#34;sudo -i nixos-rebuild switch&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lsa</span><span class="o">=</span><span class="s2">&#34;ls -lah&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">rami</span><span class="o">=</span><span class="s2">&#34;shred -fzuv </span><span class="nv">$@</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">li</span><span class="o">=</span><span class="s2">&#34;ls -li&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">r</span><span class="o">=</span><span class="s2">&#34;ranger </span><span class="nv">$@</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">m</span><span class="o">=</span><span class="s2">&#34;mpv&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ip</span><span class="o">=</span><span class="s2">&#34;ip --color=auto&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">gimp</span><span class="o">=</span><span class="s2">&#34;((gimp &gt; /dev/null 2&gt;&amp;1)&amp;)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">jtl</span><span class="o">=</span><span class="s2">&#34;journalctl -f&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ggc</span><span class="o">=</span><span class="s2">&#34;cd ~/git/playground/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">px</span><span class="o">=</span><span class="s2">&#34;pwd | xclip&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="nv">mouse</span><span class="o">=</span><span class="s2">&#34;sudo modprobe -r psmouse; sleep 3; sudo modprobe psmouse&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">anydesk</span><span class="o">=</span><span class="s2">&#34;anydesk &amp;&amp; xmodmap ~/.Xmodmap&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">zq</span><span class="o">=</span><span class="s2">&#34;zathura </span><span class="nv">$HOME</span><span class="s2">/kit/pdf/Quran/Quran.pdf &amp;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">jbs</span><span class="o">=</span><span class="s2">&#34;JEKYLL_ENV=production bundle exec jekyll serve&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">du</span><span class="o">=</span><span class="s2">&#34;du -h&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">colorize</span><span class="o">=</span><span class="s2">&#34;toilet --gay -f term </span><span class="nv">$@</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">xquery</span><span class="o">=</span><span class="s2">&#34;xdg-mime query filetype </span><span class="nv">$1</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">c</span><span class="o">=</span><span class="s2">&#34;xclip-copyfile&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">p</span><span class="o">=</span><span class="s2">&#34;xclip-pastefile&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">d</span><span class="o">=</span><span class="s2">&#34;xclip-cutfile&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">z</span><span class="o">=</span><span class="s2">&#34;zathura </span><span class="nv">$1</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cpwd</span><span class="o">=</span><span class="s2">&#34;pwd | tr -d &#39;\n&#39; | xsel -ib&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">info</span><span class="o">=</span><span class="s2">&#34;info --vi-keys&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">tmp</span><span class="o">=</span><span class="s2">&#34;mkdir /tmp/</span><span class="nv">$$</span><span class="s2"> ; cd /tmp/</span><span class="nv">$$</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">thumbs</span><span class="o">=</span><span class="s2">&#34;sxiv -atrq &#39;</span><span class="nv">$@</span><span class="s2">&#39;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">untmp</span><span class="o">=</span><span class="s2">&#34;rm -rf /tmp/</span><span class="nv">$$</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">dox</span><span class="o">=</span><span class="s2">&#34;cd ~/dos&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ipp</span><span class="o">=</span><span class="s2">&#34;curl ipinfo.io/ip&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">img</span><span class="o">=</span><span class="s2">&#34;imgur-screenshot </span><span class="nv">$@</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mwx</span><span class="o">=</span><span class="s2">&#34;mplayer -vo fbdev2 -vf scale=931:580 -geometry 978:4 -ni </span><span class="nv">$1</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ta</span><span class="o">=</span><span class="s2">&#34;\tmux a -t&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sct</span><span class="o">=</span><span class="s2">&#34;termite -t &#39;scratchpad&#39; &amp;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sxt</span><span class="o">=</span><span class="s2">&#34;xfce4-terminal -T scratchpad &amp;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">subupdate</span><span class="o">=</span><span class="s2">&#34;git submodule foreach git pull origin master&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ncm</span><span class="o">=</span><span class="s2">&#34;ncmpcpp 2&gt;/dev/null&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">grep</span><span class="o">=</span><span class="s2">&#34;grep --color=auto&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">egrep</span><span class="o">=</span><span class="s2">&#34;egrep --color=auto&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">un</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> /home/ak/lab/notes/shell/zsh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ipy</span><span class="o">=</span><span class="s2">&#34;ipython3&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">tmux</span><span class="o">=</span><span class="s2">&#34;tmux has-session -t </span><span class="nv">$USER</span><span class="s2"> || tmux new-session -s </span><span class="nv">$USER</span><span class="s2"> &amp;&amp;  tmux -2 attach-session -t </span><span class="nv">$USER</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">py</span><span class="o">=</span><span class="s2">&#34;python3&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdw</span><span class="o">=</span><span class="s2">&#34;cd ~/git/dwm; ls&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">             <span class="nv">pyc</span><span class="o">=</span><span class="s2">&#34;export _JAVA_AWT_WM_NONREPARENTING=1 ; </span><span class="nv">$HOME</span><span class="s2">/bin/pycharm/bin/pycharm.sh </span><span class="nv">$1</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdc</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/cfg&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">chkill</span><span class="o">=</span><span class="s2">&#34;ps ux | grep &#39;[C]hrome --type=renderer&#39;; | grep -v extension-process | tr -s &#39; &#39; | cut -d &#39; &#39; -f2 | xargs kill&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pak</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/git/ports/ak&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">psgrep</span><span class="o">=</span><span class="s2">&#34;ps aux | grep </span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$1</span> <span class="p">|</span> sed <span class="s1">&#39;s/^\(.\)/[\1]/g&#39;</span><span class="k">)</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">tkill</span><span class="o">=</span><span class="s2">&#34;\tmux kill-session -a&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vte</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.config/termite/config&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pgs</span><span class="o">=</span><span class="s2">&#34;prt-get search&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pt</span><span class="o">=</span><span class="s2">&#34;sudo prt-get&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pgf</span><span class="o">=</span><span class="s2">&#34;prt-get fsearch&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pgi</span><span class="o">=</span><span class="s2">&#34;sudo prt-get install&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ltd</span><span class="o">=</span><span class="s2">&#34;ls *(m0)&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="nv">lt</span><span class="o">=</span><span class="s2">&#34;ls *(.m0)&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ltr</span><span class="o">=</span><span class="s2">&#34;ls -ltr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lnew</span><span class="o">=</span><span class="s2">&#34;ls *(.om[1,3])&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="nv">lsrdir</span><span class="o">=</span><span class="s2">&#34;ls -d *(/om[1])&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lH</span><span class="o">=</span><span class="s2">&#34;ls -d .*&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="nv">lh</span><span class="o">=</span><span class="s2">&#34;ls -lh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pa</span><span class="o">=</span><span class="s2">&#34;sudo pkgadd&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ytvid</span><span class="o">=</span><span class="s2">&#34;youtube-dl --restrict-filenames -o &#39;~/mus/vid/%(title)s_%(width)sx%(height)s_%(upload_date)s.%(ext)s&#39;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ytaudio</span><span class="o">=</span><span class="s2">&#34;youtube-dl --restrict-filenames --extract-audio -o &#39;~/mus/%(title)s_%(width)sx%(height)s_%(upload_date)s.%(ext)s&#39;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sit</span><span class="o">=</span><span class="s2">&#34;cd ~/git/mysite/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">reboot</span><span class="o">=</span><span class="s2">&#34;sudo reboot&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">api</span><span class="o">=</span><span class="s2">&#34;sudo apt install --yes -V&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">aps</span><span class="o">=</span><span class="s2">&#34;apt search </span><span class="nv">$1</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">spy</span><span class="o">=</span><span class="s2">&#34;lsof -i -P +c 0 +M&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">netlist</span><span class="o">=</span><span class="s2">&#34;lsof -i -P | grep LISTEN&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">apg</span><span class="o">=</span><span class="s2">&#34;sudo apt purge -V&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">xq</span><span class="o">=</span><span class="s2">&#34;xbps-query&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">xi</span><span class="o">=</span><span class="s2">&#34;sudo xbps-install&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">xr</span><span class="o">=</span><span class="s2">&#34;sudo xbps-remove&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vx</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.Xresources&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vg</span><span class="o">=</span><span class="s2">&#34;git config -e --global&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vmc</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.config/nvim/init.vim&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">fst</span><span class="o">=</span><span class="s2">&#34;sudo </span><span class="nv">$EDITOR</span><span class="s2"> /etc/fstab&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mutc</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.config/mutt/muttrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">msc</span><span class="o">=</span><span class="s2">&#34;mbsync -VXa&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ssr</span><span class="o">=</span><span class="s2">&#34;simplescreenrecorder --start-hidden --no-systray&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">nv</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> /etc/nixos/configuration.nix&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">wtc</span><span class="o">=</span><span class="s2">&#34;qutebrowser -s content.headers.user_agent &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&#39; web.whatsapp.com &amp;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdm</span><span class="o">=</span><span class="s2">&#34;cd ~/mus&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">xf</span><span class="o">=</span><span class="s2">&#34;xfce4-terminal&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">gd</span><span class="o">=</span><span class="s2">&#34;git diff&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cD</span><span class="o">=</span><span class="s2">&#34;cd ~/sys/downloads&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ds</span><span class="o">=</span><span class="s2">&#34;dirs -v | head -n 10&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lla</span><span class="o">=</span><span class="s2">&#34;ls -la&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lc</span><span class="o">=</span><span class="s2">&#34;ls | wc -l&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">chmod</span><span class="o">=</span><span class="s2">&#34;chmod --preserve-root&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vc</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.vimrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">g</span><span class="o">=</span><span class="s2">&#34;git&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ter</span><span class="o">=</span><span class="s2">&#34;\tmux a -r -t&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">tl</span><span class="o">=</span><span class="s2">&#34;\tmux ls&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">gs</span><span class="o">=</span><span class="s2">&#34;git status&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">apar</span><span class="o">=</span><span class="s2">&#34;sudo apt autoremove -V&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">xp</span><span class="o">=</span><span class="s2">&#34;xrdb -merge ~/.Xresources&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdv</span><span class="o">=</span><span class="s2">&#34;cd ~/dev&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">gu</span><span class="o">=</span><span class="s2">&#34;git push&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vw</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/sway/config&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">top</span><span class="o">=</span><span class="s2">&#34;htop&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ga</span><span class="o">=</span><span class="s2">&#34;git add&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdd</span><span class="o">=</span><span class="s2">&#34;cd ~/.cfg&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">q</span><span class="o">=</span><span class="s2">&#34;exit&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sm</span><span class="o">=</span><span class="s2">&#34;sudo mount&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">fk</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.zsh/functions&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">plz</span><span class="o">=</span><span class="s2">&#34;sudo </span><span class="k">$(</span><span class="nb">fc</span> -ln -1<span class="k">)</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">rfz</span><span class="o">=</span><span class="s2">&#34;source </span><span class="nv">$HOME</span><span class="s2">/.zshrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vz</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.zshrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">rr</span><span class="o">=</span><span class="s2">&#34;fc -s&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">df</span><span class="o">=</span><span class="s2">&#34;df -h&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">S</span><span class="o">=</span><span class="s2">&#34;systemctl&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ss</span><span class="o">=</span><span class="s2">&#34;sudo systemctl&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdg</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/git&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">clock</span><span class="o">=</span><span class="s2">&#34;ncmpcpp -s clock&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cm</span><span class="o">=</span><span class="s2">&#34;mutt 2&gt;/dev/null&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vp</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/polybar/config.ini&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cp</span><span class="o">=</span><span class="s2">&#34;cp -i&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mv</span><span class="o">=</span><span class="s2">&#34;mv -i&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mi</span><span class="o">=</span><span class="s2">&#34;mid3v2&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mnv</span><span class="o">=</span><span class="s2">&#34;mpv --no-video&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mp</span><span class="o">=</span><span class="s2">&#34;mpv --loop-file&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mq</span><span class="o">=</span><span class="s2">&#34;mpv --really-quiet --speed=0.50 --loop-file&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ms</span><span class="o">=</span><span class="s2">&#34;mpv --really-quiet --shuffle&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">hr</span><span class="o">=</span><span class="s2">&#34;printf </span><span class="k">$(</span><span class="nb">printf</span> <span class="s1">&#39;\e[$(shuf -i 91-97 -n 1);1m%%%ds\e[0m\n&#39;</span> <span class="k">$(</span>tput cols<span class="k">))</span><span class="s2"> | tr &#39; &#39; =&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">starwars</span><span class="o">=</span><span class="s2">&#34;telnet towel.blinkenlights.nl&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">e</span><span class="o">=</span><span class="s2">&#34;evince&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sv</span><span class="o">=</span><span class="s2">&#34;sudo </span><span class="nv">$EDITOR</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">rf</span><span class="o">=</span><span class="s2">&#34;source </span><span class="nv">$HOME</span><span class="s2">/.bashrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">a</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/.config&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sk</span><span class="o">=</span><span class="s2">&#34;autoscript&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">alis</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> ~/.zsh/custom-alias&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">yt</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/mus/ &amp;&amp; youtube-viewer &amp;&amp; cd -&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">v3</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/i3/config&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">si</span><span class="o">=</span><span class="s2">&#34;sudo pacman -S --needed&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sr</span><span class="o">=</span><span class="s2">&#34;sudo pacman -R&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">srs</span><span class="o">=</span><span class="s2">&#34;sudo pacman -Rs&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">srsc</span><span class="o">=</span><span class="s2">&#34;sudo pacman -Rsc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">srn</span><span class="o">=</span><span class="s2">&#34;sudo pacman -Rn&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">update</span><span class="o">=</span><span class="s2">&#34;sudo pacman -Syu&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ssi</span><span class="o">=</span><span class="s2">&#34;pacman -Si&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqi</span><span class="o">=</span><span class="s2">&#34;pacman -Qi&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sq</span><span class="o">=</span><span class="s2">&#34;pacman -Qs&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pS</span><span class="o">=</span><span class="s2">&#34;pacman -Ss&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqii</span><span class="o">=</span><span class="s2">&#34;pacman -Qii&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqd</span><span class="o">=</span><span class="s2">&#34;pacman -Ql&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqr</span><span class="o">=</span><span class="s2">&#34;pacman -Fl&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqk</span><span class="o">=</span><span class="s2">&#34;pacman -Qk&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqo</span><span class="o">=</span><span class="s2">&#34;pacman -Qo&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sqor</span><span class="o">=</span><span class="s2">&#34;pacman -F&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sor</span><span class="o">=</span><span class="s2">&#34;pacman -Qdt&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sde</span><span class="o">=</span><span class="s2">&#34;pacman -Qet&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sC</span><span class="o">=</span><span class="s2">&#34;sudo pacman -Scc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sdw</span><span class="o">=</span><span class="s2">&#34;sudo pacman -Sw&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sil</span><span class="o">=</span><span class="s2">&#34;sudo pacman -U&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">awq</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/qtile/config.py&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">vkt</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/kitty/kitty.conf&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">awb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/bspwm/bspwmrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">awh</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/herbstluftwm/autostart&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">br</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/bspwm/external_rules&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdb</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/.config/bspwm&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">awx</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/sxhkd/sxhkdrc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">rfi</span><span class="o">=</span><span class="s2">&#34;i3 restart&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">x</span><span class="o">=</span><span class="s2">&#34;xdg-open&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lf</span><span class="o">=</span><span class="s2">&#34;leafpad&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            cfg-cava<span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2"> </span><span class="nv">$HOME</span><span class="s2">/.config/cava/config&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lilbak</span><span class="o">=</span><span class="s2">&#34;cmus-remote -k -10&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lilfor</span><span class="o">=</span><span class="s2">&#34;cmus-remote -k +10&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">bigbak</span><span class="o">=</span><span class="s2">&#34;cmus-remote -k -120&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ct</span><span class="o">=</span><span class="s2">&#34;cmus-remote -u&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">bigfor</span><span class="o">=</span><span class="s2">&#34;cmus-remote -k +120&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">pup</span><span class="o">=</span><span class="s2">&#34;bash </span><span class="nv">$HOME</span><span class="s2">/.config/polybar/launch.sh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdi</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/.config/i3/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdp</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/lab/pcc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">cdpo</span><span class="o">=</span><span class="s2">&#34;cd </span><span class="nv">$HOME</span><span class="s2">/.config/polybar&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">ll</span><span class="o">=</span><span class="s2">&#34;ls -l&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">lss</span><span class="o">=</span><span class="s2">&#34;ls -lh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">k</span><span class="o">=</span><span class="s2">&#34;clear&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">wars</span><span class="o">=</span><span class="s2">&#34;telnet towel.blinkenlights.nl&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">moon</span><span class="o">=</span><span class="s2">&#34;curl -sL http://wttr.in/moon | head -n-4&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">mount</span><span class="o">=</span><span class="s2">&#34;mount | column -t&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">scrot</span><span class="o">=</span><span class="s2">&#34;import png:- | xclip -selection c -t image/png&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">null</span><span class="o">=</span><span class="s2">&#34;2&gt;&amp;1 &gt;/dev/null&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">sudo</span><span class="o">=</span><span class="s2">&#34;sudo -i&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">v</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$EDITOR</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">initExtra</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">source</span> <span class="si">${</span><span class="nv">pkgs</span><span class="p">.zsh-vi-mode</span><span class="si">}</span>/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+</span></span><span class="line"><span class="cl">            <span class="nv">ZVM_CURSOR_STYLE_ENABLED</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">envExtra</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">typeset</span> -U path
+</span></span><span class="line"><span class="cl">            <span class="nv">path</span><span class="o">=(</span>~/.cargo/bin ~/.perl5/bin ~/.gem/ruby/2.7.0/bin ~/.local/bin ~/.local/lib ~/.pyenv/bin /usr/sbin /usr/bin/vendor_perl /sbin <span class="nv">$path</span><span class="o">[</span>@<span class="o">])</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">BROWSER</span><span class="o">=</span><span class="k">$(</span>which google-chrome-stable<span class="k">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Set Terminal</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#TERMINAL=alacritty</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> -S ~/.urxvt/urxvtd-x1c <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">TERMINAL</span><span class="o">=</span>urxvtc
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">TERMCMD</span><span class="o">=</span><span class="nv">$TERMINAL</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> -d ~/git/mysite <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">export</span> <span class="nv">SITE</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/git/mysite&#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">export</span> <span class="nv">post</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$SITE</span><span class="s2">/content/posts&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> -d ~/.local/bin <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">export</span> <span class="nv">mpath</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.local/bin/&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Set editor</span>
+</span></span><span class="line"><span class="cl">            set_editor<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">export</span> <span class="nv">GIT_EDITOR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">export</span> <span class="nv">VISUAL</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">alias</span> <span class="nv">v</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Get editor</span>
+</span></span><span class="line"><span class="cl">            get_editor<span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">((</span> $+commands<span class="o">[</span>nvim<span class="o">]</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    set_editor <span class="k">$(</span>which nvim<span class="k">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">elif</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">((</span> $+commands<span class="o">[</span>vim<span class="o">]</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    set_editor <span class="k">$(</span>which vim<span class="k">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">elif</span> <span class="o">((</span> $+commands<span class="o">[</span>vi<span class="o">]</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    set_editor <span class="k">$(</span>which vi<span class="k">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            get_editor
+</span></span><span class="line"><span class="cl">            <span class="nv">XDG_DATA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.local/share
+</span></span><span class="line"><span class="cl">            <span class="nv">XDG_CONFIG_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.config
+</span></span><span class="line"><span class="cl">            <span class="nv">XDG_CACHE_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.cache
+</span></span><span class="line"><span class="cl">            <span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span>/run/user/<span class="sb">`</span>id -u<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">command</span> -v pyenv 1&gt;/dev/null 2&gt;<span class="p">&amp;</span>1<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>pyenv init -<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$TERM</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="s2">&#34;linux&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P0000000&#34;</span> <span class="c1">#black</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P85e5e5e&#34;</span> <span class="c1">#darkgrey</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P18a2f58&#34;</span> <span class="c1">#darkred</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P9cf4f88&#34;</span> <span class="c1">#red</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P2287373&#34;</span> <span class="c1">#darkgreen</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]PA53a6a6&#34;</span> <span class="c1">#green</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P3914e89&#34;</span> <span class="c1">#darkyellow</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]PBbf85cc&#34;</span> <span class="c1">#yellow</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P4395573&#34;</span> <span class="c1">#darkblue</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]PC4779b3&#34;</span> <span class="c1">#blue</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P55e468c&#34;</span> <span class="c1">#darkmagenta</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]PD7f62b3&#34;</span> <span class="c1">#magenta</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P62b7694&#34;</span> <span class="c1">#darkcyan</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]PE47959e&#34;</span> <span class="c1">#cyan</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]P7899ca1&#34;</span> <span class="c1">#lightgrey</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">echo</span> -en <span class="s2">&#34;\e]PFc0c0c0&#34;</span> <span class="c1">#white</span>
+</span></span><span class="line"><span class="cl">                clear 
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">export</span> <span class="nv">GPG_TTY</span><span class="o">=</span><span class="k">$(</span>tty<span class="k">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">export</span> <span class="nv">SSH_AUTH_SOCK</span><span class="o">=</span>/run/user/<span class="k">$(</span>id -u<span class="k">)</span>/gnupg/S.gpg-agent.ssh
+</span></span><span class="line"><span class="cl">            gpg-connect-agent updatestartuptty /bye &gt;/dev/null
+</span></span><span class="line"><span class="cl">            <span class="nb">export</span> <span class="nv">PYENV_ROOT</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.pyenv&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">export</span> <span class="nv">_JAVA_AWT_WM_NONREPARENTING</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">export</span> <span class="nv">GIT_DISCOVERY_ACROSS_FILESYSTEM</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">                <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">profileExtra</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Start X at login</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o"><a class="internal-link broken"></span> -z <span class="nv">$DISPLAY</span> <span class="o"></a></span> <span class="o">&amp;&amp;</span> <span class="o"><a class="internal-link broken"></span> <span class="k">$(</span>tty<span class="k">)</span> <span class="o">=</span> /dev/tty1 <span class="o"></a></span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">              <span class="nb">exec</span> startx -- vt1 -keeptty <span class="p">&amp;</span>&gt;/dev/null
+</span></span><span class="line"><span class="cl">              <span class="nb">logout</span>
+</span></span><span class="line"><span class="cl">            <span class="k">elif</span> <span class="o"><a class="internal-link broken"></span> <span class="k">$(</span>tty<span class="k">)</span> !<span class="o">=</span> /dev/tty1 <span class="o"></a></span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">              sudo loadkeys <span class="nv">$HOME</span>/.loadkeysrc
+</span></span><span class="line"><span class="cl">              tmux has-session -t <span class="nv">$USER</span> <span class="o">||</span> tmux new-session -t <span class="nv">$USER</span> <span class="o">&amp;&amp;</span> tmux attach-session -t <span class="nv">$USER</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
+
+    </article>
+    
+
+<hr/>
+
+
+<div class="page-end">
+    <div class="backlinks-container">
+        <h3>Backlinks</h3>
+<ul class="backlinks">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+      
+    
+      
+      
+      <li>
+        <a href="/notes/home-manager-install/" data-ctx="Configure Home-Manager" data-src="/notes/home-manager-install" class="internal-link">Home Manager Installation</a>
+      </li>
+      
+      
+      
+</ul>
+
+    </div>
+    <div>
+        <script
+  src="https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js"
+  integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI="
+  crossorigin="anonymous"
+></script>
+<h3>Interactive Graph</h3>
+<div id="graph-container"></div>
+<style>
+  :root {
+    --g-node: var(--secondary);
+    --g-node-active: var(--primary);
+    --g-node-inactive: var(--visited);
+    --g-link: var(--outlinegray);
+    --g-link-active: #5a7282;
+  }
+</style>
+
+<script src="https://abdullah.solutions/js/graph.afdb02e537635f9a611b53a988e5645b.js"></script>
+
+    </div>
+</div>
+
+
+
+<div id="contact_buttons">
+    <footer>
+        <p> Abdullah Khabir © 2022</p>
+        <ul>
+            
+            <li><a href="https://abdullah.solutions">Home</a></li>
+            <li><a href="https://youtube.com/c/AbdullahToday">YouTube</a></li><li><a href="https://github.com/Awan">Github</a></li><li><a href="https://linkedin.com/in/AbdullahKhabir">LinkedIn</a></li></ul>
+    </footer>
+</div>
+
+</div>
+</body>
+
+</html>
