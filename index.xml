@@ -34,7 +34,7 @@ How to install Home-Manager can be installed on almost any linux distribution.</
       
       <guid>https://abdullah.solutions/notes/remap-keys/</guid>
       <description>Keyboard remapping There are many programs out there for X. But want to do it better way with systemd.
-Get keyboard info cat /proc/bus/input/devices I: Bus=0011 Vendor=0001 Product=0001 Version=ab54 N: Name=&amp;#34;AT Translated Set 2 keyboard&amp;#34; P: Phys=isa0060/serio0/input0 S: Sysfs=/devices/platform/i8042/serio0/input/input0 U: Uniq= H: Handlers=sysrq kbd leds event0 B: PROP=0 B: EV=120013 B: KEY=402000000 3803078f800d001 fefff79fffefffff fffffffffffffffe B: MSC=10 B: LED=7 And check the keyboard info&amp;hellip; You will need handlers line.</description>
+Get keyboard info Read keyboard information from system.</description>
     </item>
     
     <item>
@@ -44,6 +44,15 @@ Get keyboard info cat /proc/bus/input/devices I: Bus=0011 Vendor=0001 Product=00
       
       <guid>https://abdullah.solutions/notes/encrypted-nixos/</guid>
       <description>Why NixOS Tired of other distributions there. Just want to try something new. Been using it a few years back.</description>
+    </item>
+    
+    <item>
+      <title>Keys Remapping on NixOS</title>
+      <link>https://abdullah.solutions/notes/remap-keys-on-nixos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://abdullah.solutions/notes/remap-keys-on-nixos/</guid>
+      <description>Keys Remapping This post is only for NixOS. If you&amp;rsquo;re using some other linux distribution, you can check this post&amp;hellip;</description>
     </item>
     
   </channel>

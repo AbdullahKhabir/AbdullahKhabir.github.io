@@ -6,7 +6,7 @@
   <meta
     name="description"
     content="Keyboard remapping There are many programs out there for X. But want to do it better way with systemd.
-Get keyboard info cat /proc/bus/input/devices I: Bus=0011 Vendor=0001 Product=0001 Version=ab54 N: Name=&#34;AT Translated Set 2 keyboard&#34; P: Phys=isa0060/serio0/input0 S: Sysfs=/devices/platform/i8042/serio0/input/input0 U: Uniq= H: Handlers=sysrq kbd leds event0 B: PROP=0 B: EV=120013 B: KEY=402000000 3803078f800d001 fefff79fffefffff fffffffffffffffe B: MSC=10 B: LED=7 And check the keyboard info&hellip; You will need handlers line."
+Get keyboard info Read keyboard information from system."
   />
   <title>
     How to remap keys
@@ -81,13 +81,13 @@ Get keyboard info cat /proc/bus/input/devices I: Bus=0011 Vendor=0001 Product=00
   <script>
     const BASE_URL = "https://abdullah.solutions"
     const fetchData = Promise.all([
-          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.adcaccf61c18639df49eb5d887c94953.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/linkIndex.a24e56249d9b8d24092f9405d5ad315b.min.json")
             .then(data => data.json())
             .then(data => ({
               index: data.index,
               links: data.links,
             })),
-          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.822f9f23355ae057b9890112f6129e58.min.json")
+          fetch("https:\/\/abdullah.solutions\/indices\/contentIndex.3d4599c8f2e1b205501e969de87d1724.min.json")
             .then(data => data.json()),
         ])
         .then(([{index, links}, content]) => ({
@@ -219,7 +219,7 @@ if (!doNotTrack) {
       <h1>How to remap keys</h1>
       <p class="meta">
           Last updated 
-Aug 1, 2022
+Aug 2, 2022
 
  
           
@@ -271,6 +271,8 @@ Aug 1, 2022
 <a href="#keyboard-remapping"><h2 id="keyboard-remapping"><span class="hanchor" ariaLabel="Anchor"># </span>Keyboard remapping</h2></a>
 <p>There are many programs out there for <code>X</code>. But want to do it better way with <code>systemd</code>.</p>
 <a href="#get-keyboard-info"><h2 id="get-keyboard-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get keyboard info</h2></a>
+<p>Read keyboard information from system.</p>
+<p><code>cat /proc/bus/input/devices</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /proc/bus/input/devices
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">I: <span class="nv">Bus</span><span class="o">=</span><span class="m">0011</span> <span class="nv">Vendor</span><span class="o">=</span><span class="m">0001</span> <span class="nv">Product</span><span class="o">=</span><span class="m">0001</span> <span class="nv">Version</span><span class="o">=</span>ab54
@@ -284,14 +286,14 @@ Aug 1, 2022
 </span></span><span class="line"><span class="cl">B: <span class="nv">KEY</span><span class="o">=</span><span class="m">402000000</span> 3803078f800d001 fefff79fffefffff fffffffffffffffe
 </span></span><span class="line"><span class="cl">B: <span class="nv">MSC</span><span class="o">=</span><span class="m">10</span>
 </span></span><span class="line"><span class="cl">B: <span class="nv">LED</span><span class="o">=</span><span class="m">7</span>
-</span></span></code></pre></div><p>And check the keyboard info&hellip;
-You will need <code>handlers</code> line. In that line search for event number. For example <code>event0</code>.</p>
-<p>Copy the line.</p>
+</span></span></code></pre></div><p>And check the keyboard info&hellip;</p>
+<p>You will need <code>handlers</code> line. In that line search for event number. For example <code>event0</code>.</p>
+<p>Remember this line as you will need it later&hellip;</p>
 <a href="#install-evtest"><h2 id="install-evtest"><span class="hanchor" ariaLabel="Anchor"># </span>Install <code>evtest</code></h2></a>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nix-env -i evtest
-</span></span></code></pre></div><p>Now hit the key you want to remap.</p>
-<a href="#get-key-info"><h2 id="get-key-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get key info</h2></a>
-<p>Run <code>evtest</code> on the event you found in first step. <code>event0</code>.</p>
+</span></span></code></pre></div><a href="#get-key-info"><h2 id="get-key-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get key info</h2></a>
+<p>Run <code>evtest</code> on the event you found in first step. <code>event0</code>
+and hit the key you want to remap.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">evtest /dev/input/event0
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># event0 is from last step.</span>
@@ -301,7 +303,7 @@ You will need <code>handlers</code> line. In that line search for event number. 
 </span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1659355203.806256, -------------- SYN_REPORT ------------
 </span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1659355204.310583, <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>, code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>, value db
 </span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1659355204.310583, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">125</span> <span class="o">(</span>KEY_LEFTMETA<span class="o">)</span>, value <span class="m">0</span>
-</span></span></code></pre></div><p>And search for <code>key value</code>. It will be there in first line and last value after <code>(MSC_SCAN)</code>.
+</span></span></code></pre></div><p>Search for <code>key value</code>. It will be there in first line and last value after <code>(MSC_SCAN)</code>.
 I have modified it so don&rsquo;t follow blindly. Instead press the key you want to remap and search for the value. In above example it is <code>db</code>.</p>
 <p>Write down it.</p>
 <a href="#get-desired-key-info"><h2 id="get-desired-key-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get desired key info</h2></a>
@@ -313,7 +315,12 @@ I have modified it so don&rsquo;t follow blindly. Instead press the key you want
 <a href="#create-configuration-file"><h2 id="create-configuration-file"><span class="hanchor" ariaLabel="Anchor"># </span>Create configuration file</h2></a>
 <p>Now create a configuration file.</p>
 <p>And paste the information you copied earlier from first step.</p>
-<p>The first line should be:</p>
+<p>You can skip the other informations and just add the name. But if things aren&rsquo;t working, just follow the steps below.</p>
+<p>To get the name:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grep <span class="nv">Name</span><span class="o">=</span> /proc/bus/input/devices
+</span></span></code></pre></div><p>Copy the keyboard name and enter this way&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">evdev:AT Translated Set <span class="m">2</span> keyboard:*
+</span></span></code></pre></div><p>The first line should be:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">evdev:input:b&lt;bus_id&gt;v&lt;vendor_id&gt;p&lt;product_id&gt;e&lt;version_id&gt;-&lt;modalias&gt;
 </span></span></code></pre></div><ul>
 <li>evdev: Leave it as it is.</li>
@@ -322,9 +329,7 @@ I have modified it so don&rsquo;t follow blindly. Instead press the key you want
 <p>All other blocks you can copy from the first step.
 The first line&hellip;</p>
 <p><code>I: Bus=0011 Vendor=0001 Product=0001 Version=ab54</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">vim /etc/udev/hwdb.d/my-customkeys.hwdb
-</span></span><span class="line"><span class="cl">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim /etc/udev/hwdb.d/my-customkeys.hwdb
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">evdev:input:b0011v0001p0001*
 </span></span><span class="line"><span class="cl"> <span class="nv">KEYBOARD_KEY_cf</span><span class="o">=</span>leftmeta
@@ -333,12 +338,22 @@ The first line&hellip;</p>
 <p><strong>Don&rsquo;t forget to put a space in the beginning of the lines where you remap the keys. In this example second and third line&hellip; Also you will find the desired keys keycodes in UPPERCASE in 4th step, just use them here in lowercase else things won&rsquo;t work&hellip;</strong></p>
 </blockquote>
 <a href="#update-hardware-database"><h2 id="update-hardware-database"><span class="hanchor" ariaLabel="Anchor"># </span>Update hardware database</h2></a>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">systemd-hwdb update
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemd-hwdb update
 </span></span></code></pre></div><a href="#reload-database"><h2 id="reload-database"><span class="hanchor" ariaLabel="Anchor"># </span>Reload database</h2></a>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">udevadm trigger
-</span></span></code></pre></div><p>Enjoy&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">udevadm trigger
+</span></span></code></pre></div><p>If you&rsquo;re using NixOS, check this post instead&hellip;</p>
+<blockquote>
+<p>
+
+
+
+
+
+<a
+  href="/notes/remap-keys-on-nixos/"
+  rel="noopener" class="internal-link"
+  data-src="/notes/remap-keys-on-nixos/">How to remap the keys on NixOS</a></p>
+</blockquote>
 
 
     </article>
@@ -358,10 +373,24 @@ The first line&hellip;</p>
     
     
     
-    <li>
-        No backlinks found
-    </li>
     
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      <li>
+        <a href="/notes/remap-keys-on-nixos/" data-ctx="How to get keycodes and scancodes for keys remapping" data-src="/notes/remap-keys-on-nixos" class="internal-link">Keys Remapping on NixOS</a>
+      </li>
+      
+      
+      
 </ul>
 
     </div>
