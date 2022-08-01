@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
   <meta
     name="description"
-    content="What&rsquo;s Home Manager Home-Manager is a nix way to manage dotfiles.
-How to install Home-Manager can be installed on almost any linux distribution."
+    content="Keyboard remapping There are many programs out there for X. But want to do it better way with systemd.
+Get keyboard info cat /proc/bus/input/devices I: Bus=0011 Vendor=0001 Product=0001 Version=ab54 N: Name=&#34;AT Translated Set 2 keyboard&#34; P: Phys=isa0060/serio0/input0 S: Sysfs=/devices/platform/i8042/serio0/input/input0 U: Uniq= H: Handlers=sysrq kbd leds event0 B: PROP=0 B: EV=120013 B: KEY=402000000 3803078f800d001 fefff79fffefffff fffffffffffffffe B: MSC=10 B: LED=7 And check the keyboard info&hellip; You will need handlers line."
   />
   <title>
-    Home Manager Installation
+    How to remap keys
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -216,10 +216,10 @@ if (!doNotTrack) {
 
 
     <article>
-      <h1>Home Manager Installation</h1>
+      <h1>How to remap keys</h1>
       <p class="meta">
           Last updated 
-Jul 26, 2022
+Aug 1, 2022
 
  
           
@@ -227,10 +227,28 @@ Jul 26, 2022
       </p>
       <ul class="tags">
           
-          <li><a href="https://abdullah.solutions/tags/home-manager/">Home manager</a></li>
+          <li><a href="https://abdullah.solutions/tags/keyboard/">Keyboard</a></li>
           
       </ul>
       
+<aside class="mainTOC">
+    <details >
+        <summary>Table of Contents</summary>
+        <nav id="TableOfContents">
+  <ol>
+    <li><a href="#keyboard-remapping">Keyboard remapping</a></li>
+    <li><a href="#get-keyboard-info">Get keyboard info</a></li>
+    <li><a href="#install-evtest">Install <code>evtest</code></a></li>
+    <li><a href="#get-key-info">Get key info</a></li>
+    <li><a href="#get-desired-key-info">Get desired key info</a></li>
+    <li><a href="#create-configuration-file">Create configuration file</a></li>
+    <li><a href="#update-hardware-database">Update hardware database</a></li>
+    <li><a href="#reload-database">Reload database</a></li>
+  </ol>
+</nav>
+    </details>
+</aside>
+
 
       
 
@@ -250,33 +268,77 @@ Jul 26, 2022
 
 
 
-<a href="#whats-home-manager"><h2 id="whats-home-manager"><span class="hanchor" ariaLabel="Anchor"># </span>What&rsquo;s Home Manager</h2></a>
-<p>Home-Manager is a nix way to manage dotfiles.</p>
-<a href="#how-to-install"><h3 id="how-to-install"><span class="hanchor" ariaLabel="Anchor"># </span>How to install</h3></a>
-<p>Home-Manager can be installed on almost any linux distribution. But I&rsquo;m covering only NixOS here.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
-</span></span></code></pre></div><p>Replace <code>release-22.05</code> with the release you&rsquo;re using.</p>
-<p>And update channels.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-channel --update
-</span></span></code></pre></div><p>Install home-manager.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nix-shell <span class="s1">&#39;&lt;home-manager&gt;&#39;</span> -A install
-</span></span></code></pre></div><a href="#back-up-old-dots"><h3 id="back-up-old-dots"><span class="hanchor" ariaLabel="Anchor"># </span>Back up old dots</h3></a>
-<p>If you already have some dots, home-manager will warn you. Back them up and re-run the last command.</p>
-<a href="#edit-home-manager-file"><h3 id="edit-home-manager-file"><span class="hanchor" ariaLabel="Anchor"># </span>Edit home-manager file</h3></a>
-<p>home-manager will create a file <code>~/.config/nixpkgs/home.nix</code>. You can edit it by hand to suit your needs. Or by invoking:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">home-manager edit
+<a href="#keyboard-remapping"><h2 id="keyboard-remapping"><span class="hanchor" ariaLabel="Anchor"># </span>Keyboard remapping</h2></a>
+<p>There are many programs out there for <code>X</code>. But want to do it better way with <code>systemd</code>.</p>
+<a href="#get-keyboard-info"><h2 id="get-keyboard-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get keyboard info</h2></a>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /proc/bus/input/devices
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">I: <span class="nv">Bus</span><span class="o">=</span><span class="m">0011</span> <span class="nv">Vendor</span><span class="o">=</span><span class="m">0001</span> <span class="nv">Product</span><span class="o">=</span><span class="m">0001</span> <span class="nv">Version</span><span class="o">=</span>ab54
+</span></span><span class="line"><span class="cl">N: <span class="nv">Name</span><span class="o">=</span><span class="s2">&#34;AT Translated Set 2 keyboard&#34;</span>
+</span></span><span class="line"><span class="cl">P: <span class="nv">Phys</span><span class="o">=</span>isa0060/serio0/input0
+</span></span><span class="line"><span class="cl">S: <span class="nv">Sysfs</span><span class="o">=</span>/devices/platform/i8042/serio0/input/input0
+</span></span><span class="line"><span class="cl">U: <span class="nv">Uniq</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">H: <span class="nv">Handlers</span><span class="o">=</span>sysrq kbd leds event0
+</span></span><span class="line"><span class="cl">B: <span class="nv">PROP</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">B: <span class="nv">EV</span><span class="o">=</span><span class="m">120013</span>
+</span></span><span class="line"><span class="cl">B: <span class="nv">KEY</span><span class="o">=</span><span class="m">402000000</span> 3803078f800d001 fefff79fffefffff fffffffffffffffe
+</span></span><span class="line"><span class="cl">B: <span class="nv">MSC</span><span class="o">=</span><span class="m">10</span>
+</span></span><span class="line"><span class="cl">B: <span class="nv">LED</span><span class="o">=</span><span class="m">7</span>
+</span></span></code></pre></div><p>And check the keyboard info&hellip;
+You will need <code>handlers</code> line. In that line search for event number. For example <code>event0</code>.</p>
+<p>Copy the line.</p>
+<a href="#install-evtest"><h2 id="install-evtest"><span class="hanchor" ariaLabel="Anchor"># </span>Install <code>evtest</code></h2></a>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nix-env -i evtest
+</span></span></code></pre></div><p>Now hit the key you want to remap.</p>
+<a href="#get-key-info"><h2 id="get-key-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get key info</h2></a>
+<p>Run <code>evtest</code> on the event you found in first step. <code>event0</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">evtest /dev/input/event0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># event0 is from last step.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Here the output goes...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1659355203.806256, -------------- SYN_REPORT ------------
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1659355204.310583, <span class="nb">type</span> <span class="m">4</span> <span class="o">(</span>EV_MSC<span class="o">)</span>, code <span class="m">4</span> <span class="o">(</span>MSC_SCAN<span class="o">)</span>, value db
+</span></span><span class="line"><span class="cl">Event: <span class="nb">time</span> 1659355204.310583, <span class="nb">type</span> <span class="m">1</span> <span class="o">(</span>EV_KEY<span class="o">)</span>, code <span class="m">125</span> <span class="o">(</span>KEY_LEFTMETA<span class="o">)</span>, value <span class="m">0</span>
+</span></span></code></pre></div><p>And search for <code>key value</code>. It will be there in first line and last value after <code>(MSC_SCAN)</code>.
+I have modified it so don&rsquo;t follow blindly. Instead press the key you want to remap and search for the value. In above example it is <code>db</code>.</p>
+<p>Write down it.</p>
+<a href="#get-desired-key-info"><h2 id="get-desired-key-info"><span class="hanchor" ariaLabel="Anchor"># </span>Get desired key info</h2></a>
+<p>Next step is to find the keycode of the key you want this new key remapped to.</p>
+<p>It is located in <code>/usr/include/linux/input-event-codes.h</code>. <strong>NixOS</strong> is an exception so just use <code>find</code> to find this file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">#define KEY_LEFTMETA		125</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#define KEY_RIGHTMETA		126</span>
+</span></span></code></pre></div><p>Copy the keycode. In this example, it&rsquo;s <code>LEFTMETA</code>.</p>
+<a href="#create-configuration-file"><h2 id="create-configuration-file"><span class="hanchor" ariaLabel="Anchor"># </span>Create configuration file</h2></a>
+<p>Now create a configuration file.</p>
+<p>And paste the information you copied earlier from first step.</p>
+<p>The first line should be:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">evdev:input:b&lt;bus_id&gt;v&lt;vendor_id&gt;p&lt;product_id&gt;e&lt;version_id&gt;-&lt;modalias&gt;
+</span></span></code></pre></div><ul>
+<li>evdev: Leave it as it is.</li>
+<li>input: Input devices identifed by USB kernel modalias. For built in keyboard and AT keyboards, put <code>atkbd</code>. If you have some USB keyboard, put <code>keyboard:usb:v*p*</code> for whole line.</li>
+</ul>
+<p>All other blocks you can copy from the first step.
+The first line&hellip;</p>
+<p><code>I: Bus=0011 Vendor=0001 Product=0001 Version=ab54</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim /etc/udev/hwdb.d/my-customkeys.hwdb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">evdev:input:b0011v0001p0001*
+</span></span><span class="line"><span class="cl"> <span class="nv">KEYBOARD_KEY_cf</span><span class="o">=</span>leftmeta
+</span></span><span class="line"><span class="cl"> <span class="nv">KEYBOARD_KEY_c7</span><span class="o">=</span>esc
 </span></span></code></pre></div><blockquote>
-<p>✏️  Next:   
-
-
-
-
-
-<a
-  href="/notes/configure-home-manager/"
-  rel="noopener" class="internal-link"
-  data-src="/notes/configure-home-manager/">Configure Home-Manager</a></p>
+<p><strong>Don&rsquo;t forget to put a space in the beginning of the lines where you remap the keys. In this example second and third line&hellip; Also you will find the desired keys keycodes in UPPERCASE in 4th step, just use them here in lowercase else things won&rsquo;t work&hellip;</strong></p>
 </blockquote>
+<a href="#update-hardware-database"><h2 id="update-hardware-database"><span class="hanchor" ariaLabel="Anchor"># </span>Update hardware database</h2></a>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemd-hwdb update
+</span></span></code></pre></div><a href="#reload-database"><h2 id="reload-database"><span class="hanchor" ariaLabel="Anchor"># </span>Reload database</h2></a>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">udevadm trigger
+</span></span></code></pre></div><p>Enjoy&hellip;</p>
 
 
     </article>
@@ -296,20 +358,10 @@ Jul 26, 2022
     
     
     
+    <li>
+        No backlinks found
+    </li>
     
-    
-      
-      
-      
-    
-      
-      
-      <li>
-        <a href="/notes/encrypted-nixos/" data-ctx="Manage Dotfiles using Home-Manager" data-src="/notes/encrypted-nixos" class="internal-link">Install encrypted NixOS</a>
-      </li>
-      
-      
-      
 </ul>
 
     </div>
