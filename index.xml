@@ -8,6 +8,28 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2023 23:01:14 +0500</lastBuildDate><atom:link href="https://abdullah.solutions/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Client Side Attacks</title>
+      <link>https://abdullah.solutions/pentesting/client-side-attacks/</link>
+      <pubDate>Tue, 21 Mar 2023 22:45:37 +0500</pubDate>
+      
+      <guid>https://abdullah.solutions/pentesting/client-side-attacks/</guid>
+      <description>Client Side attacks for Windows MS Word macros A Microsoft Word macro is a set of instructions or actions that you can record or write in Visual Basic for Applications (VBA) to automate repetitive tasks in Word. Macros can save you time by performing tasks that would otherwise need to be done manually, such as formatting text or tables, performing searches, or replacing text. You can create macros in Word by using the Macro Recorder or by writing VBA code.</description>
+    </item>
+    
+    <item>
+      <title>Web Apps Attacks</title>
+      <link>https://abdullah.solutions/pentesting/web-apps-attacks/</link>
+      <pubDate>Mon, 13 Mar 2023 00:26:38 +0500</pubDate>
+      
+      <guid>https://abdullah.solutions/pentesting/web-apps-attacks/</guid>
+      <description>Information Gethering Get the information about the application, what it does, how it works, which language it is written in? Which server software is the application running on?
+Our goal of every attack or exploit is to increase our permissions within the application or pivot to another application or target.
+Inspecting URLs Check file extensions, like .php, .jsp, .do, or .html.
+Inspecting Page Content Check page&amp;rsquo;s resources.
+Firefox shortcut for Debugger Tool: (Ctrl + Shift + K)</description>
+    </item>
+    
+    <item>
       <title>Vulnerability Scanning</title>
       <link>https://abdullah.solutions/pentesting/vulnerability-scanning/</link>
       <pubDate>Sun, 12 Mar 2023 13:55:03 +0500</pubDate>
