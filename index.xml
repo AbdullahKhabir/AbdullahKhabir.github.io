@@ -13,8 +13,8 @@
       <pubDate>Sat, 25 Mar 2023 03:26:15 +0500</pubDate>
       
       <guid>https://abdullah.solutions/pentesting/port-forwarding/</guid>
-      <description>Port Forwarding Techniques With Rinetd I have three machines in this lab:
-My Arch Linux host (can connect to internet) My Kali VM (can connect to internet as well) OpenBSD VM (can&amp;rsquo;t connect to internet) So I have compromised kali vm, and from that machine I have access to OpenBSD vm now. And OpenBSD vm isn&amp;rsquo;t connected to internet. Even I can&amp;rsquo;t ping to my arch linux host from that vm.</description>
+      <description>What&amp;rsquo;s Port-Forwarding? In penetration testing, port forwarding can be used to facilitate access to internal network resources that would otherwise be inaccessible from outside the network.
+For example, if a penetration tester has gained access to a device on the internal network and wants to access resources on other devices within the network, they may use port forwarding to create a tunnel between the internal network and their own device.</description>
     </item>
     
     <item>
