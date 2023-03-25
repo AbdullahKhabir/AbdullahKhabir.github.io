@@ -2,10 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://abdullah.solutions/pentesting/client-side-attacks/</loc>
-    <lastmod>2023-03-21T22:45:37+05:00</lastmod>
-  </url><url>
     <loc>https://abdullah.solutions/pentesting/</loc>
+    <lastmod>2023-03-25T03:26:15+05:00</lastmod>
+  </url><url>
+    <loc>https://abdullah.solutions/pentesting/port-forwarding/</loc>
+    <lastmod>2023-03-25T03:26:15+05:00</lastmod>
+  </url><url>
+    <loc>https://abdullah.solutions/pentesting/client-side-attacks/</loc>
     <lastmod>2023-03-21T22:45:37+05:00</lastmod>
   </url><url>
     <loc>https://abdullah.solutions/pentesting/web-apps-attacks/</loc>

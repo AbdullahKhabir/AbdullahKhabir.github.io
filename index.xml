@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2023 23:01:14 +0500</lastBuildDate><atom:link href="https://abdullah.solutions/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Port Forwarding</title>
+      <link>https://abdullah.solutions/pentesting/port-forwarding/</link>
+      <pubDate>Sat, 25 Mar 2023 03:26:15 +0500</pubDate>
+      
+      <guid>https://abdullah.solutions/pentesting/port-forwarding/</guid>
+      <description>Port Forwarding Techniques With Rinetd I have three machines in this lab:
+My Arch Linux host (can connect to internet) My Kali VM (can connect to internet as well) OpenBSD VM (can&amp;rsquo;t connect to internet) So I have compromised kali vm, and from that machine I have access to OpenBSD vm now. And OpenBSD vm isn&amp;rsquo;t connected to internet. Even I can&amp;rsquo;t ping to my arch linux host from that vm.</description>
+    </item>
+    
+    <item>
       <title>Client Side Attacks</title>
       <link>https://abdullah.solutions/pentesting/client-side-attacks/</link>
       <pubDate>Tue, 21 Mar 2023 22:45:37 +0500</pubDate>
